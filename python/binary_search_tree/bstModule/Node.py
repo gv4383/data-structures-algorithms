@@ -21,33 +21,34 @@ class Node(object):
         if data < self.data:
             if self.leftChild is not None:
                 self.leftChild.remove(data, self)
-            elif data > self.data:
-                if self.rightChild is not None:
-                    self.rightChild.remove(data, self)
-            else:
-                if self.leftChild is not None and self.rightChild is not None:
-                    self.data = self.rightChild.getMin()
-                    self.rightChild.remove(self.data, self)
-                elif parentNode.leftChild == self:
-                    if self.leftChild is not None:
-                        tempNode = self.leftChild
-                    else:
-                        tempNode = self.rightChild
+        elif data > self.data:
+            if self.rightChild is not None:
+                self.rightChild.remove(data, self)
+        else:
+            if self.leftChild is not None and self.rightChild is not None:
+                self.data = self.rightChild.getMin()
+                self.rightChild.remove(self.data, self)
+            elif parentNode.leftChild == self:
+                if self.leftChild is not None:
+                    tempNode = self.leftChild
+                else:
+                    tempNode = self.rightChild
 
-                    parentNode = self.rightChild
-                elif parentNode.rightChild == self:
-                    if self.leftChild is not None:
-                        tempNode = self.leftChild
-                    else:
-                        tempNode = self.rightChild
+                parentNode.leftChild = tempNode
 
-                    parentNode.rightChild = tempNode
+            elif parentNode.rightChild == self:
+                if self.leftChild is not None:
+                    tempNode = self.leftChild
+                else:
+                    tempNode = self.rightChild
+
+                parentNode.rightChild = tempNode
 
     def getMin(self):
         if self.leftChild is None:
             return self.data
         else:
-            self.leftChild.getMin()
+            return self.leftChild.getMin()
 
     def getMax(self):
         if self.rightChild is None:
