@@ -11,17 +11,10 @@ function countOccurrence(str, substr) {
 
   // iterate through str
   for (let i = 0; i < str.length; i++) {
-    // console.log(i);
-
     // start comparing the section of str to see if it matches substr
     if (str[i] === substr[0]) {
-      // console.log(`match at i = ${i}`);
-      // console.log('count before compareSub:', count);
-
       // compareSub returns either a 1 or 0 depending on if a match is found
       count += compareSub(str, substr, i);
-
-      // console.log('count after compareSub:', count);
     }
   }
 
@@ -38,11 +31,6 @@ function compareSub(str, substr, strStart) {
 
   // iterates through substr
   for (let j = 1; j < substr.length; j++) {
-    // console.log('j =', j);
-    // console.log('check before comparing letters:', check);
-    // console.log('current letter in str:', str[strStart + j]);
-    // console.log('current letter in subStr:', substr[j]);
-
     // compares the rest of of specified section of str with substr to see if there is a match
     if (str[strStart + j] && str[strStart + j] === substr[j]) {
       check += 1;
